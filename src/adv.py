@@ -43,6 +43,8 @@ HEADINGS = {
     'e': 'e_to',
     'w': 'w_to'
 }
+
+
 # Functions for the loop
 
 # userInput
@@ -54,48 +56,43 @@ def userInput():
 
 # Handle userInput
 
-def handle_userInput(player, user_input):
-    if user_input == 'q':
-        return f"I wish you would continue playing", False
-    elif user_input in ('n', 'e', 's', 'w'):
-        heading = HEADINGS[user_input]
+def handle_userInput(player, userProvidedinput):
+    if userProvidedinput == 'q':
+        return False
+    elif userProvidedinput in ('n', 'e', 's', 'w'):
+        heading = HEADINGS[userProvidedinput]
         room = getattr(player.room, heading)
-        print(room, "Located in the handle_userInput function")
+        # print(room, "Located in the handle_userInput function")
         if room is not None:
             player.room = room
-        elif user_input == 'n':
-            print('There is no room to the North, try again')
-        elif user_input == 'e':
-            print('There is no room to the East, try again')
-        elif user_input == 's':
-            print('There is no room to the South, try again')
-        elif user_input == 'w':
-            print('There is no room to the Waffles, try again')
         else:
             print("Try typing \"N\" \"S\" \"W\" or \"E\" instead")
     return True
 
 
+def main():
+    # Make a new player object that is currently in the 'outside' room.
+    player = Player("Bob", room['outside'])  # Prints out Player Name: Bob -- Players Location: Outside Cave Entrance --
+    # Description: North of you, the cave mount beckons
 
-# Make a new player object that is currently in the 'outside' room.
-player1 = Player("Bob", room['outside'])  # Prints out Player Name: Bob -- Players Location: Outside Cave Entrance --
-# Description: North of you, the cave mount beckons
+    movement = True
 
-print(player1)
-movement = True
-while movement:
+    while movement:
+        # print(player.room)
+        action = userInput
+        movement = handle_userInput(player, action)
+
+    # Write a loop that:
+    #
+    # * Prints the current room name
+    # * Prints the current description (the textwrap module might be useful here).
+    # * Waits for user input and decides what to do.
+    #
+    # If the user enters a cardinal direction, attempt to move to the room there.
+    # Print an error message if the movement isn't allowed.
+    #
+    # If the user enters "q", quit the game.
 
 
-
-
-
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+if __name__ == "__main__":
+    main()
