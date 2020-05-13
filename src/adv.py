@@ -58,6 +58,7 @@ def userInput():
 
 def handle_userInput(player, user_input):
     if user_input == 'q':
+        print(f"\n\n\n\t\t\t\tI wish you would not say such things!\n\n\n")
         return False
     elif user_input in ('n', 'e', 's', 'w'):
         heading = HEADINGS[user_input]
@@ -66,7 +67,9 @@ def handle_userInput(player, user_input):
         if room is not None:
             player.room = room
         else:
-            print("Try typing \"N\" \"S\" \"W\" or \"E\" instead")
+            print("There is no rooms to the %s, you dope." % user_input)
+    else:
+        print("\n\n\n\t\t\t\tTry typing \"N\" \"S\" \"W\" or \"E\" instead\n\n\n")
     return True
 
 
@@ -78,8 +81,8 @@ def main():
     movement = True
 
     while movement:
-        # print(player.room)
-        user_input = userInput
+        print(player.room)
+        user_input = userInput()
         movement = handle_userInput(player, user_input)
 
     # Write a loop that:
