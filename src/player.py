@@ -6,3 +6,7 @@ class Player:
     def __init__(self, name, room):
         self.name = name
         self.room = room
+
+    def __str__(self):
+        return f"Player Name: {self.name} \nPlayers {self.room}"
+

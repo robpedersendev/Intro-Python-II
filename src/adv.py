@@ -4,24 +4,23 @@ from player import Player
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'outside': Room("Outside Cave Entrance",
+                    "North of you, the cave mount beckons"),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
+    'foyer': Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
+    'narrow': Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
-
 
 # Link rooms together
 
@@ -38,9 +37,30 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+
+# Functions for the loop
+
+# userInput
+
+def userInput():
+    user_input = input("Where doest thou desirest to wander: ")
+    return user_input.lower()
+
+
+
+
+
 # Make a new player object that is currently in the 'outside' room.
-player1 = Player("Bob", room['outside'])
+player1 = Player("Bob", room['outside'])  # Prints out Player Name: Bob -- Players Location: Outside Cave Entrance --
+# Description: North of you, the cave mount beckons
+
 print(player1)
+movement = True
+while movement:
+
+
+
+
 
 # Write a loop that:
 #
