@@ -37,7 +37,12 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
-
+HEADINGS = {
+    'n': 'n_to',
+    's': 's_to',
+    'e': 'e_to',
+    'w': 'w_to'
+}
 # Functions for the loop
 
 # userInput
@@ -45,9 +50,6 @@ room['treasure'].s_to = room['narrow']
 def userInput():
     user_input = input("Where doest thou desirest to wander: ")
     return user_input.lower()
-
-
-
 
 
 # Make a new player object that is currently in the 'outside' room.
