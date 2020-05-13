@@ -73,6 +73,7 @@ def handle_userInput(player, user_input):
             print('There is no room to the Waffles, try again')
         else:
             print("Try typing \"N\" \"S\" \"W\" or \"E\" instead")
+    return True
 
 
 
