@@ -56,11 +56,11 @@ def userInput():
 
 # Handle userInput
 
-def handle_userInput(player, userProvidedinput):
-    if userProvidedinput == 'q':
+def handle_userInput(player, user_input):
+    if user_input == 'q':
         return False
-    elif userProvidedinput in ('n', 'e', 's', 'w'):
-        heading = HEADINGS[userProvidedinput]
+    elif user_input in ('n', 'e', 's', 'w'):
+        heading = HEADINGS[user_input]
         room = getattr(player.room, heading)
         # print(room, "Located in the handle_userInput function")
         if room is not None:
@@ -79,8 +79,8 @@ def main():
 
     while movement:
         # print(player.room)
-        action = userInput
-        movement = handle_userInput(player, action)
+        user_input = userInput
+        movement = handle_userInput(player, user_input)
 
     # Write a loop that:
     #
