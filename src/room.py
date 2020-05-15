@@ -17,5 +17,11 @@ class Room:
         for item in new:
             self.items.append(item)
 
+    def remove(self, item):
+        if item in self.items:
+            self.items.remove(item)
+        else:
+            print(f"{item} does not exist in this room.")
+
     def __str__(self):
         return f"Location: {self.name} \nDescription: {self.description}"
