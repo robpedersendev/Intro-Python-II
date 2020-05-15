@@ -37,5 +37,17 @@ class Player:
         if not exists:
             print(f"{item} does not exist in the room.")
 
+    def drop(self, item):
+        exists = False
+        for invenItem in self.items:
+            if item == invenItem.name:
+                self.items.remove(invenItem)
+                invenItem.onDrop()
+                self.room.addItems(invenItem)
+                exists = True
+                break
+        if not exists:
+            print(f"{self.name} does not hold {item}.")
+
     def __str__(self):
         return f"Player Name: {self.name} \nPlayers {self.room}"
