@@ -18,5 +18,12 @@ class Player:
         self.room.displayItems()
         print("##################################################################")
 
+    def printInventory(self):
+        print("##################################################################")
+        print(f"{self.name}'s inventory:")
+        for item in self.items:
+            print(item)
+        print("##################################################################")
+
     def __str__(self):
         return f"Player Name: {self.name} \nPlayers {self.room}"
