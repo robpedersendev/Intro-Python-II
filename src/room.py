@@ -23,5 +23,9 @@ class Room:
         else:
             print(f"{item} does not exist in this room.")
 
+    def display(self):
+        for item in self.items:
+            print(item)
+
     def __str__(self):
         return f"Location: {self.name} \nDescription: {self.description}"
