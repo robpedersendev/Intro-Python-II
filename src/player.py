@@ -25,5 +25,17 @@ class Player:
             print(item)
         print("##################################################################")
 
+    def add(self, item):
+        exists = False
+        for roomItem in self.room.items:
+            if item == roomItem.name:
+                self.items.append(roomItem)
+                roomItem.onTake()
+                self.room.removeItem(roomItem)
+                exists = True
+                break
+        if not exists:
+            print(f"{item} does not exist in the room.")
+
     def __str__(self):
         return f"Player Name: {self.name} \nPlayers {self.room}"
