@@ -3,5 +3,8 @@ class Item:
         self.name = name
         self.item_description = item_description
 
+    def take(self):
+        print(f"You have picked up {self.name}.")
+
     def __str__(self):
         return f"{self.name}--{self.item_description}"
