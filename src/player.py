@@ -27,11 +27,11 @@ class Player:
 
     def add(self, item):
         exists = False
-        for roomItem in self.room.items:
-            if item == roomItem.name:
-                self.items.append(roomItem)
-                roomItem.onTake()
-                self.room.removeItem(roomItem)
+        for room in self.room.items:
+            if item == room.name:
+                self.items.append(room)
+                room.onTake()
+                self.room.removeItem(room)
                 exists = True
                 break
         if not exists:
@@ -39,11 +39,11 @@ class Player:
 
     def drop(self, item):
         exists = False
-        for invenItem in self.items:
-            if item == invenItem.name:
-                self.items.remove(invenItem)
-                invenItem.onDrop()
-                self.room.addItems(invenItem)
+        for inventory in self.items:
+            if item == inventory.name:
+                self.items.remove(inventory)
+                inventory.onDrop()
+                self.room.addItems(inventory)
                 exists = True
                 break
         if not exists:
