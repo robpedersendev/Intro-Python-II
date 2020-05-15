@@ -73,6 +73,8 @@ def handle_userInput(player, user_input):
     return True
 
 
+# Main function that is ran and called
+
 def main():
     # Make a new player object that is currently in the 'outside' room.
     player = Player("Bob", room['outside'])  # Prints out Player Name: Bob -- Players Location: Outside Cave Entrance --
