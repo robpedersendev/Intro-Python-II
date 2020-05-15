@@ -1,13 +1,13 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
-from items import Items
+from items import Item
 
 
-class Room(Items):
-    def __init__(self, name, description, items, item_description):
+class Room(Item):
+    def __init__(self, name, description, item, item_description):
         self.name = name
         self.description = description
-        super().__init__(items, item_description)
+        super().__init__(item, item_description)
 
         self.n_to = None
         self.s_to = None

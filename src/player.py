@@ -1,13 +1,13 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
-from items import Items
+from items import Item
 
 
-class Player(Items):
-    def __init__(self, name, room, items, item_description):
+class Player(Item):
+    def __init__(self, name, room, item, item_description):
         self.name = name
         self.room = room
-        super().__init__(items, item_description)
+        super().__init__(item, item_description)
 
     def __str__(self):
         return f"Player Name: {self.name} \nPlayers {self.room}"
