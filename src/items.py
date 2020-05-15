@@ -6,5 +6,8 @@ class Item:
     def take(self):
         print(f"You have picked up {self.name}.")
 
+    def drop(self):
+        print(f"You have dropped {self.name}.")
+
     def __str__(self):
         return f"{self.name}--{self.item_description}"
