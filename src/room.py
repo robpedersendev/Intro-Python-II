@@ -4,10 +4,10 @@ from items import Items
 
 
 class Room(Items):
-    def __init__(self, name, description, items):
+    def __init__(self, name, description, items, item_description):
         self.name = name
         self.description = description
-        super().__init__(items)
+        super().__init__(items, item_description)
 
         self.n_to = None
         self.s_to = None
