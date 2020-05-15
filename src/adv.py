@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from items import Item
+from items import Item, Food, Weapon
 
 # Declare all the rooms
 
