@@ -1,11 +1,16 @@
 from room import Room
 from player import Player
+from items import Item
 
 # Declare all the rooms
 
+# Declaring Items
+
+items = [Item("Sharp and ugly", "sword")]
+
 room = {
     'outside': Room("Outside Cave Entrance",
-                    "North of you, the cave mount beckons"),
+                    "North of you, the cave mount beckons", items[0]),
 
     'foyer': Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -43,6 +48,7 @@ HEADINGS = {
     'e': 'e_to',
     'w': 'w_to'
 }
+
 
 
 # Functions for the loop
@@ -84,6 +90,8 @@ def main():
 
     while movement:
         print(player.room)
+        if player.room.items:
+            print(player.room.items)
         user_input = userInput()
         movement = handle_userInput(player, user_input)
 

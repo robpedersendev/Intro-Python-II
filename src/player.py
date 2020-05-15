@@ -4,10 +4,14 @@ from items import Item
 
 
 class Player(Item):
-    def __init__(self, name, room, item, item_description):
+    def __init__(self, name, room, items=[]):
         self.name = name
         self.room = room
-        super().__init__(item, item_description)
+        self.items = items
+
+    def lose_item:
+
+    def add_item:
 
     def __str__(self):
         return f"Player Name: {self.name} \nPlayers {self.room}"
