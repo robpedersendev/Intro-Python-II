@@ -30,8 +30,8 @@ class Player:
         for room in self.room.items:
             if item == room.name:
                 self.items.append(room)
-                room.onTake()
-                self.room.removeItem(room)
+                room.take()
+                self.room.remove(room)
                 exists = True
                 break
         if not exists:
@@ -42,8 +42,8 @@ class Player:
         for inventory in self.items:
             if item == inventory.name:
                 self.items.remove(inventory)
-                inventory.onDrop()
-                self.room.addItems(inventory)
+                inventory.drop()
+                self.room.add(inventory)
                 exists = True
                 break
         if not exists:
