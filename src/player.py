@@ -9,21 +9,17 @@ class Player:
         self.items = items
 
     def printRoom(self):
-        print("\n\n\n\t\t\t\t")
+        print("\n\t\t\t\t")
         print(f"Current Room: {self.room.name}")
-        print("\n\n\n\t\t\t\t")
+        print("\n\t\t\t\t")
         print(f"{self.room.description}")
-        print("\n\n\n\t\t\t\t")
-        print("Items in this room:")
-        self.room.displayItems()
-        print("\n\n\n")
 
     def printInventory(self):
-        print("\n\n\n\t\t\t\t")
+        print("\n\t\t\t\t")
         print(f"{self.name}'s inventory:")
         for item in self.items:
             print(item)
-        print("\n\n\n")
+        print("\n####")
 
     def add(self, item):
         exists = False
