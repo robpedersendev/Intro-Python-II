@@ -7,12 +7,12 @@ from items import Item, Food, Weapon
 # Initialize items
 
 # Generic items
-stick = Item("Stick", "An old, reliable piece of a tree                                                                      ")
+stick = Item("Stick",
+             "An old, reliable piece of a tree                                                                      ")
 
 # Food
 rice = Food("Rice", "Grain that you can eat", 310)
 bagel = Food("Bagel", "This turns into carbohydrates", 700)
-
 
 # Weapon
 knife = Weapon("Knife", "Close to a shank, but not a shank", 35)
@@ -67,48 +67,56 @@ HEADINGS = {
 }
 
 
-
 # Functions for the loop
 
 # userInput
 
 def userInput():
-    user_input = input("Where doest thou desirest to wander: ")
+    user_input = input(f"What would you like to do? Move :[n] "
+                       f"North\t[s] South\t[e] East\t[w] West\n[i] Access Inventory\
+                        n[take <item_name>]\t[drop <item_name>]\n[q] Quit: ")
     return user_input.lower()
 
 
 # Handle userInput
 
 def handle_userInput(player, user_input):
-    if user_input == 'q':
-        print(f"\n\n\n\t\t\t\tI wish you would not say such things!\n\n\n")
-        return False
-    elif user_input in ('n', 'e', 's', 'w'):
-        heading = HEADINGS[user_input]
-        room = getattr(player.room, heading)
-        # print(room, "Located in the handle_userInput function")
-        if room is not None:
-            player.room = room
+    cli_input = user_input.split()
+    if len(cli_input) == 1:
+        if user_input == 'q':
+            print(f"\n\n\n\t\t\t\tI wish you would not say such things!\n\n\n")
+            return False
+        elif user_input in ('n', 'e', 's', 'w'):
+            heading = HEADINGS[user_input]
+            room = getattr(player.room, heading)
+            # print(room, "Located in the handle_userInput function")
+            if room is not None:
+                player.room = room
+            else:
+                print("There is no rooms to the %s, you dope." % user_input)
+        elif user_input == 'i':
+            player.printInventory()
         else:
-            print("There is no rooms to the %s, you dope." % user_input)
-    else:
-        print("\n\n\n\t\t\t\tTry typing \"N\" \"S\" \"W\" or \"E\" instead\n\n\n")
-    return True
+            print("\n\n\n\t\t\t\tTry typing \"N\" \"S\" \"W\" or \"E\" instead\n\n\n")
+        return True
+
 
 
 # Main function that is ran and called
 
 def main():
+    # Have user provide a username
+    username = input("What is your name? ")
     # Make a new player object that is currently in the 'outside' room.
-    player = Player("Bob", room['outside'])  # Prints out Player Name: Bob -- Players Location: Outside Cave Entrance --
+    player = Player(username,
+                    room['outside'])  # Prints out Player Name: Bob -- Players Location: Outside Cave Entrance --
     # Description: North of you, the cave mount beckons
 
     movement = True
 
     while movement:
-        print(player.room)
-        if player.room.items:
-            print(player.room.items)
+        player.printRoom()
+
         user_input = userInput()
         movement = handle_userInput(player, user_input)
 
