@@ -7,42 +7,43 @@ from items import Item, Food, Weapon
 # Initialize items
 
 # Generic items
-stick = Item("Stick",
+stick = Item("stick",
              "An old, reliable piece of a tree                                                                      ")
 
 # Food
-rice = Food("Rice", "Grain that you can eat", 310)
-bagel = Food("Bagel", "This turns into carbohydrates", 700)
+rice = Food("rice", "Grain that you can eat", 310)
+bagel = Food("bagel", "This turns into carbohydrates", 700)
 
 # Weapon
-knife = Weapon("Knife", "Close to a shank, but not a shank", 35)
-prison_shank = Item("Shank", "A sharp knife used in ye olde prisons")
+knife = Weapon("knife", "Close to a shank, but not a shank", 35)
+prison_shank = Item("shank", "A sharp knife used in ye olde prisons")
 
 room = {
     'outside': Room("Outside Cave Entrance",
-                    "North of you, the cave mount beckons"),
+                    "North of you, the cave mount beckons", [stick, stick, bagel]),
 
     'foyer': Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", [knife, bagel]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", [rice, prison_shank]),
 
     'narrow': Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", [knife, bagel, knife, rice, rice, stick]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", [knife, knife, knife, bagel, bagel, bagel, bagel, bagel,
+                                                         bagel, bagel]),
 }
 
 # Add room items
-room['outside'].addItems(stick, stick, bagel)
-room['foyer'].addItems(knife, bagel)
-room['overlook'].addItems(rice, prison_shank)
-room['narrow'].addItems(knife, bagel, knife, rice, rice, stick)
-room['treasure'].addItems(knife, knife, knife, bagel, bagel, bagel, bagel, bagel, bagel, bagel)
+# room['outside'].add(stick, stick, bagel)
+# room['foyer'].add(knife, bagel)
+# room['overlook'].add(rice, prison_shank)
+# room['narrow'].add(knife, bagel, knife, rice, rice, stick)
+# room['treasure'].add(knife, knife, knife, bagel, bagel, bagel, bagel, bagel, bagel, bagel)
 
 # Link rooms together
 
@@ -72,9 +73,9 @@ HEADINGS = {
 # userInput
 
 def userInput():
-    user_input = input(f"What would you like to do? Move :[n] "
-                       f"North\t[s] South\t[e] East\t[w] West\n[i] Access Inventory\
-                        n[take <item_name>]\t[drop <item_name>]\n[q] Quit: ")
+    user_input = input(f"What would you like to do?\n"
+                       f"Move :\n[n]orth\t[s]outh\t[e]ast\t[w]est\n[a]ccess Inventory"
+                       f"\ntake <item_name>\tdrop <item_name>\n[q] Quit: ")
     return user_input.lower()
 
 
@@ -84,7 +85,7 @@ def handle_userInput(player, user_input):
     cli_input = user_input.split()
     if len(cli_input) == 1:
         if user_input == 'q':
-            print(f"\n\n\n\t\t\t\tI wish you would not say such things!\n\n\n")
+            print(f"\n\n\n\t\t\t\tI wish you would not say such things!\n")
             return False
         elif user_input in ('n', 'e', 's', 'w'):
             heading = HEADINGS[user_input]
@@ -97,16 +98,17 @@ def handle_userInput(player, user_input):
         elif user_input == 'i':
             player.printInventory()
         else:
-            print("\n\n\n\t\t\t\tTry typing \"N\" \"S\" \"W\" \"E\" \"I\" \"Get/Take\" \"Drop\" instead\n\n\n")
+            print("\n\t\t\t\tTry typing \"N\" \"S\" \"W\" \"E\" \"I\" \"Get/Take\" \"Drop\" instead\n")
         return True
     elif len(cli_input) == 2:
         if cli_input[0] == "get" or cli_input[0] == "take":
             player.add(cli_input[1])
-        elif user_input[0] == "drop":
+        elif cli_input[0] == "drop":
             player.drop(cli_input[1])
+            print(player.drop(cli_input[1]))
         return True
     else:
-        print("\n\n\n\t\t\t\tTry typing \"N\" \"S\" \"W\" \"E\" \"I\" \"Get/Take\" \"Drop\" instead\n\n\n")
+        print("\n\t\t\t\tTry typing \"N\" \"S\" \"W\" \"E\" \"I\" \"Get/Take\" \"Drop\" instead\n")
     return True
 
 
@@ -120,11 +122,22 @@ def main():
                     room['outside'])  # Prints out Player Name: Bob -- Players Location: Outside Cave Entrance --
     # Description: North of you, the cave mount beckons
 
+    # Function to check to see if the room that the player is in has items
+    def has_items():
+        if player.room.items:
+            print("\n\t\t\t\t")
+            print("Items in this room:")
+            for item in player.room.items:
+                print(item)
+            print("\n")
+        else:
+            print("\n")
+
     movement = True
 
     while movement:
         player.printRoom()
-
+        has_items()
         user_input = userInput()
         movement = handle_userInput(player, user_input)
 
