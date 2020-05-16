@@ -1,7 +1,7 @@
 class Item:
-    def __init__(self, item_description, name):
+    def __init__(self, name, description):
         self.name = name
-        self.item_description = item_description
+        self.description = description
 
     def take(self):
         print(f"You have picked up {self.name}.")
@@ -10,7 +10,7 @@ class Item:
         print(f"You have dropped {self.name}.")
 
     def __str__(self):
-        return f"{self.name}--{self.item_description}"
+        return f"{self.name}--{self.description}"
 
 
 class Food(Item):
