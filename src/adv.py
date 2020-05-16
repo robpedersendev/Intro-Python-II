@@ -101,9 +101,9 @@ def handle_userInput(player, user_input):
         return True
     elif len(cli_input) == 2:
         if cli_input[0] == "get" or cli_input[0] == "take":
-            player.addItem(cli_input[1])
+            player.add(cli_input[1])
         elif user_input[0] == "drop":
-            player.dropItem(cli_input[1])
+            player.drop(cli_input[1])
         return True
     else:
         print("\n\n\n\t\t\t\tTry typing \"N\" \"S\" \"W\" \"E\" \"I\" \"Get/Take\" \"Drop\" instead\n\n\n")
