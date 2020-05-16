@@ -4,13 +4,23 @@ from items import Item, Food, Weapon
 
 # Declare all the rooms
 
-# Declaring Items
+# Initialize items
 
-items = [Item("Sharp and ugly", "sword")]
+# Generic items
+stick = Item("Stick", "An old, reliable piece of a tree                                                                      ")
+
+# Food
+rice = Food("Rice", "Grain that you can eat", 310)
+bagel = Food("Bagel", "This turns into carbohydrates", 700)
+
+
+# Weapon
+knife = Weapon("Knife", "Close to a shank, but not a shank", 35)
+prison_shank = Item("Shank", "A sharp knife used in ye olde prisons")
 
 room = {
     'outside': Room("Outside Cave Entrance",
-                    "North of you, the cave mount beckons", items[0]),
+                    "North of you, the cave mount beckons"),
 
     'foyer': Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
