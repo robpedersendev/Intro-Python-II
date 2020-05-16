@@ -37,6 +37,13 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+# Add room items
+room['outside'].addItems(stick, stick, bagel)
+room['foyer'].addItems(knife, bagel)
+room['overlook'].addItems(rice, prison_shank)
+room['narrow'].addItems(knife, bagel, knife, rice, rice, stick)
+room['treasure'].addItems(knife, knife, knife, bagel, bagel, bagel, bagel, bagel, bagel, bagel)
+
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
